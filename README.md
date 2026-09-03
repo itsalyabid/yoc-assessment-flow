@@ -79,10 +79,10 @@ and is about a browser crash, not revision.
 **`onSubmit` is a stub.** Wire it to your API. The `flags` object carries the
 integrity tally for the report.
 
-**Server-side detection.** The client guards catch a human. An agent driving a
-browser types character by character and trips none of them. Submission timing and
-input cadence are the cheap fix, and they belong on your side where a candidate
-cannot see them.
+**Server-side signals.** Client-side guards can only catch what happens in the
+browser, and they are visible to anyone who looks. Submission timing and input
+cadence belong on your side, where they are cheap to compute and a candidate
+cannot see them. Worth a conversation.
 
 **One promise to keep or remove.** The intro says "Saves as you go". The autosave
 indicator is real in the UI but nothing is persisted yet. Either wire it to storage
