@@ -1,0 +1,72 @@
+/*
+  Motion for the candidate flow. Registered through Tailwind v4's @theme so the
+  keyframes ship as `animate-*` utilities alongside the rest of the system,
+  rather than as a separate stylesheet nobody remembers to import.
+
+  Import once, after your Tailwind entry:
+    @import "./features/assessment/assessment.css";
+*/
+
+@theme {
+  --ease-flow: cubic-bezier(0.2, 0, 0, 1);
+
+  --animate-rise: rise 520ms var(--ease-flow) both;
+  --animate-slide: slide 420ms var(--ease-flow) both;
+  --animate-mark-in: mark-in 300ms ease both;
+  --animate-guard-in: guard-in 300ms var(--ease-flow) both;
+  --animate-tick: tick 320ms var(--ease-flow) both;
+  --animate-seal: seal 500ms var(--ease-flow) both;
+  --animate-sheen: sheen 700ms var(--ease-flow) both;
+  --animate-shake: shake 340ms ease both;
+  --animate-wake: wake 620ms var(--ease-flow) 1;
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(12px); }
+  }
+  /* forward motion reads as forward: each step arrives from the right */
+  @keyframes slide {
+    from { opacity: 0; transform: translateX(20px); }
+  }
+  @keyframes mark-in {
+    from { opacity: 0; transform: scale(0.92); }
+  }
+  @keyframes guard-in {
+    from { opacity: 0; transform: translateY(-8px); }
+  }
+  @keyframes tick {
+    from { opacity: 0; transform: scale(0.4) rotate(-12deg); }
+  }
+  @keyframes seal {
+    from { opacity: 0; transform: scale(0.6); }
+  }
+  @keyframes sheen {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(320%); }
+  }
+  @keyframes shake {
+    10%, 90% { transform: translateX(-1px); }
+    30%, 70% { transform: translateX(2px); }
+    50% { transform: translateX(-2px); }
+  }
+  @keyframes wake {
+    0%, 100% { box-shadow: 0 0 0 0 rgb(0 123 255 / 0); }
+    50% { box-shadow: 0 0 0 5px rgb(0 123 255 / 0.16); }
+  }
+}
+
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* The completion check draws its own stroke. This lives outside @theme because
+   the animation belongs on the <path>, and a utility class on the <svg> does
+   not cascade into it. */
+.assessment-seal path {
+  stroke-dasharray: 26;
+  stroke-dashoffset: 26;
+  animation: draw 460ms var(--ease-flow) 260ms forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .assessment-seal path { animation: none; stroke-dashoffset: 0; }
+}

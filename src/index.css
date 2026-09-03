@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@import "./features/assessment/assessment.css";
+
+/*
+  Your Opportunity Co. theme, read from the live build (assets/index-*.css).
+  These already exist in your repo; reproduced here so the demo runs standalone.
+*/
+@theme {
+  --color-primary: #007bff;
+  --color-primary-dark: #0064d2;
+  --color-secondary: #2858af;
+  --color-secondary-dark: #0064d2;
+  --color-ink: #0b1220;
+  --color-muted: #5b6472;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f3f4f6;
+
+  --font-sans: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+html { font-family: var(--font-sans); }
+body { margin: 0; -webkit-font-smoothing: antialiased; }
